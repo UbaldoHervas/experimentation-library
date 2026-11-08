@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-11-08
+
+- Added a GitHub Actions workflow for PyPI Trusted Publishing.
+- Builds and tests the distributions before publishing with GitHub OIDC.
+- Statistical calculations and public API are unchanged from 0.1.1.
+
 ## 0.1.1 — 2026-11-08
 
 - Redesigned the README with a project banner, package badges and executable examples.

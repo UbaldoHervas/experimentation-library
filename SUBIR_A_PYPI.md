@@ -1,31 +1,39 @@
-# Publicación de ExperimentPy
+# Publicación con GitHub Actions
 
-El paquete se publica en PyPI como `experimentpy`. El código fuente está en
-https://github.com/UbaldoHervas/experimentation-library.
+El paquete se publica en PyPI como `experimentpy`, desde el repositorio
+`UbaldoHervas/experimentation-library`.
 
-Antes de publicar una versión, sube al repositorio el README, la documentación
-y las imágenes de `docs/assets/`. PyPI carga esas imágenes mediante sus URLs
-públicas de GitHub.
+## Configuración de PyPI
 
-Desde la raíz del repositorio:
+En https://pypi.org/manage/project/experimentpy/settings/publishing/ añade
+un Trusted Publisher de GitHub Actions con estos valores:
 
-```bash
-python -m pip install -e ".[dev]"
-python -m unittest discover -s tests -v
-python -m build
-python -m twine check --strict dist/*
-```
+| Campo | Valor |
+| --- | --- |
+| Owner | `UbaldoHervas` |
+| Repository | `experimentation-library` |
+| Workflow filename | `publish.yml` |
+| Environment | `pypi` |
 
-Publica únicamente el wheel y el archivo fuente de la versión nueva. Para
-esta actualización:
+El archivo del flujo debe existir en `.github/workflows/publish.yml`.
 
-```bash
-python -m twine upload dist/experimentpy-0.1.1-py3-none-any.whl dist/experimentpy-0.1.1.tar.gz
-```
+## Publicar
 
-Al solicitar usuario, introduce `__token__`; como contraseña, utiliza un token
-de PyPI válido con permiso para publicar `experimentpy`.
+Con el código actualizado en `main`, abre la pestaña Actions del repositorio,
+selecciona **Publish to PyPI** y pulsa **Run workflow**, eligiendo `main`.
+El flujo ejecuta los tests, construye y comprueba las distribuciones, y las
+publica mediante OIDC. No necesita guardar un token de PyPI en GitHub.
 
-La distribución se publica mediante Twine usando la cuenta del propietario.
-La autenticación de subida usa un token de PyPI. No añadas ese token al código,
-al repositorio ni a los archivos de distribución.
+La versión preparada es **0.1.2**. Cada publicación posterior requiere una
+versión nueva en `pyproject.toml`, `src/experimentpy/__init__.py` y el test
+de versión. Una versión ya publicada no se puede reemplazar.
+
+PyPI verifica las URLs del mismo repositorio al subir mediante Trusted
+Publishing. Un enlace de repositorio GitHub verificado permite mostrar el
+panel de estadísticas en la ficha de esa versión.
+
+Referencias:
+
+- https://docs.pypi.org/project_metadata/#repository-statistics
+- https://docs.pypi.org/trusted-publishers/adding-a-publisher/
+- https://docs.pypi.org/trusted-publishers/using-a-publisher/
