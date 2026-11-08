@@ -1,3 +1,5 @@
 include LICENSE README.md CHANGELOG.md SUBIR_A_PYPI.md
 recursive-include tests *.py
 recursive-include examples *.py
+recursive-include docs *.md *.png *.svg
+recursive-include tools *.py

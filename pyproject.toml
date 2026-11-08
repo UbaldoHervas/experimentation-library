@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "experimentpy"
-version = "0.1.0"
+version = "0.1.1"
 description = "Statistical tools for online experimentation: sample size and sample ratio mismatch."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -22,11 +22,15 @@ classifiers = [
 dependencies = ["scipy>=1.10"]
 
 [project.urls]
+Homepage = "https://github.com/UbaldoHervas/experimentation-library"
 Repository = "https://github.com/UbaldoHervas/experimentation-library"
+Documentation = "https://github.com/UbaldoHervas/experimentation-library/blob/main/docs/README.md"
 Issues = "https://github.com/UbaldoHervas/experimentation-library/issues"
+Changelog = "https://github.com/UbaldoHervas/experimentation-library/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = ["build>=1.2", "twine>=5"]
+docs = ["matplotlib>=3.7"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
